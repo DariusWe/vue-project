@@ -1,7 +1,7 @@
 <template>
   <div class="outer-container">
     <div class="form-container">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
@@ -14,8 +14,8 @@
   align-items: center;
 }
 .form-container {
-  border: 1px solid white;
   width: fit-content;
-  padding: 40px;
+  min-width: 420px;
+  padding: 60px;
 }
 </style>

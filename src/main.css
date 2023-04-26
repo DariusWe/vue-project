@@ -14,6 +14,7 @@
   --text-color-light: rgba(255, 255, 255, 0.86);
   --text-color-lightgray: rgba(255, 255, 255, 0.84);
   --border-color-dark: #2f2f2f;
+  --border-color-semi-dark: #696969;
   --header-height: 60px;
 }
 
@@ -34,6 +35,11 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 800;
 }
 
 a {

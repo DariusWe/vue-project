@@ -1,7 +1,19 @@
+<!-- 
+  This wrapper-component only provides the visual appearance of a form. Inputs and form logic must be handled in the parent component. The component accepts a "title"-, "form"- and "footnote"-slot. 
+-->
+
 <template>
   <div class="outer-container">
     <div class="form-container">
-      <slot />
+      <h2 class="title">
+        <slot name="title" />
+      </h2>
+      <form @submit="$emit('onSubmit')">
+        <slot name="form" />
+      </form>
+      <span class="footnote">
+        <slot name="footnote" />
+      </span>
     </div>
   </div>
 </template>
@@ -17,5 +29,18 @@
   width: fit-content;
   min-width: 420px;
   padding: 60px;
+}
+.title {
+  text-align: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0 20px 0;
+}
+.footnote {
+  display: block;
+  font-size: 1.4rem;
+  text-align: center;
 }
 </style>

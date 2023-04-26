@@ -5,12 +5,14 @@
   margin: 0;
   padding: 0;
   position: relative;
-  font-weight: normal;
 }
 
 :root {
   font-size: 10px;
   --main-bg-color: #151515;
+  --button-color: #262626;
+  --button-border-color: #2c2c2c;
+  --border-error-color: rgb(225, 76, 76);
   --text-color-light: rgba(255, 255, 255, 0.86);
   --text-color-lightgray: rgba(255, 255, 255, 0.84);
   --border-color-dark: #2f2f2f;
@@ -27,9 +29,9 @@ body {
   background-color: var(--main-bg-color);
   border-left: 1px solid var(--border-color-dark);
   border-right: 1px solid var(--border-color-dark);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+  /* font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-family: 'Boska', serif;
+  font-family: 'Boska', serif; */
   font-family: 'Satoshi', sans-serif;
   font-size: 1.5rem;
   text-rendering: optimizeLegibility;

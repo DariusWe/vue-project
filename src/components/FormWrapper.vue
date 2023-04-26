@@ -8,7 +8,7 @@
       <h2 class="title">
         <slot name="title" />
       </h2>
-      <form @submit="$emit('onSubmit')">
+      <form @submit.prevent="$emit('onSubmit')">
         <slot name="form" />
       </form>
       <span class="footnote">

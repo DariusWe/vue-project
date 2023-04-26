@@ -12,8 +12,8 @@ onMounted(() => {
   <main>
     <span>My first Vue.js project</span>
     <span
-      >Vue.js (Composition API) &nbsp;&#x2022;&nbsp; Firebase Auth &nbsp;&#x2022;&nbsp; Java &nbsp;&#x2022;&nbsp;
-      MySQL</span
+      >Vue.js (Composition API) &nbsp;&#x2022;&nbsp; Java &nbsp;&#x2022;&nbsp; Spring Security &nbsp;&#x2022;&nbsp;
+      PostgreSQL</span
     >
     <canvas class="gradient-canvas" data-transition-in />
   </main>

@@ -13,7 +13,7 @@ button {
   padding: 10px;
   margin-top: 25px;
   margin-bottom: 20px;
-  border: 1px solid #2c2c2c;
+  border: 1px solid var(--button-border-color);
   color: var(--text-color-light);
   background-color: #262626;
   font-family: inherit;

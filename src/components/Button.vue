@@ -13,16 +13,16 @@ button {
   padding: 10px;
   margin-top: 25px;
   margin-bottom: 20px;
-  border: 1px solid var(--button-border-color);
-  color: var(--text-color-light);
-  background-color: #262626;
+  color: var(--text-color);
+  background-color: var(--button-color);
   font-family: inherit;
   font-size: inherit;
   font-weight: 600;
   cursor: pointer;
+  border: none;
 }
 
 button:hover {
-  background-color: #2c2c2c;
+  background-color: var(--button-hover-color);
 }
 </style>

@@ -33,13 +33,13 @@ span:first-child {
   font-size: 4rem;
   font-weight: 800;
   margin-bottom: 2px;
-  color: var(--text-color-lightgray);
+  color: #f6f6f6;
 }
 
 span:nth-child(2) {
   z-index: 2;
   font-weight: 300;
-  color: var(--text-color-lightgray);
+  color: #f6f6f6;
 }
 
 .gradient-canvas {

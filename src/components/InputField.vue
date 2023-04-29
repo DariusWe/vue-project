@@ -4,8 +4,10 @@
  -->
 
 <script setup>
+import { ref } from 'vue';
 defineProps(['modelValue', 'errMsg'])
 const emit = defineEmits(['update:modelValue', 'removeErrMessage'])
+const showPassword = ref(false)
 
 function handleInputChange($event) {
   emit('update:modelValue', $event.target.value)
@@ -15,7 +17,14 @@ function handleInputChange($event) {
 
 <template>
   <div class="input-container">
-    <input v-bind="$attrs" :value="modelValue" @input="handleInputChange" :class="[errMsg ? 'invalid' : '']" />
+    <input v-bind="$attrs" :type="showPassword ? 'text' : $attrs['type']" :value="modelValue" @input="handleInputChange" :class="[errMsg ? 'invalid' : '']" />
+    <i
+      v-if="$attrs['type'] === 'password'"
+      class="material-icons visbility-icon"
+      title="Toggle visibility"
+      @click="showPassword = !showPassword"
+      >{{ showPassword ? 'visibility_off' : 'visibility'}}</i
+    >
     <span class="err-message" v-if="errMsg">{{ errMsg }}</span>
   </div>
 </template>
@@ -32,19 +41,20 @@ input {
   background-color: transparent;
   font-family: inherit;
   font-size: inherit;
-  color: var(--text-color-light);
+  color: var(--text-color);
   outline: none;
   border: none;
-  border: 1px solid var(--border-color-semi-dark);
+  border: 1px solid var(--border-color);
 }
 
 input[type='password'] {
   font: small-caption;
   font-size: 1.5rem;
+  line-height: 2.08rem;
 }
 
 input:focus {
-  border-color: #999;
+  border-color: var(--border-color-focus);
 }
 
 .invalid {
@@ -67,6 +77,22 @@ input:focus {
   line-height: 1.8rem;
   width: max-content;
   max-width: 320px;
+}
+
+.visbility-icon {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  opacity: 0.2;
+  cursor: pointer;
+}
+
+.visbility-icon:hover {
+  opacity: 0.4;
 }
 
 @media only screen and (max-width: 1050px) {

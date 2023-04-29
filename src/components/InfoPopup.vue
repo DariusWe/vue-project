@@ -1,13 +1,20 @@
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, onMounted } from 'vue'
+
+const timeoutFinished = ref(false)
+const popupIsOpen = ref(false)
 
 defineProps(['text'])
 
-const popupIsOpen = ref(false)
+onMounted(() => {
+  setTimeout(() => {
+    timeoutFinished.value = true
+  }, 1200)
+})
 </script>
 
 <template>
-  <i class="fa-solid fa-info" @mouseover="popupIsOpen = !popupIsOpen" @mouseout="popupIsOpen = !popupIsOpen"></i>
+  <i v-if="timeoutFinished" class="material-icons" @mouseover="popupIsOpen = !popupIsOpen" @mouseout="popupIsOpen = !popupIsOpen"> info </i>
   <Transition>
     <span v-show="popupIsOpen"> {{ text }}</span>
   </Transition>
@@ -18,20 +25,13 @@ i {
   position: absolute;
   bottom: calc(var(--header-height) + 30px);
   left: 40px;
-  font-size: 2.2rem;
-  color: #111;
-  background-color: var(--text-color-light);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3px;
-  padding-bottom: 2px;
+  font-size: 4rem;
+  color: var(--text-color);
   animation-name: Popup;
   animation-duration: 700ms;
   animation-timing-function: ease;
   transition: transform 0.1s;
+  cursor: context-menu;
 }
 
 @keyframes Popup {
@@ -50,7 +50,7 @@ i {
 
 span {
   position: absolute;
-  color: black;
+  color: var(--main-bg-color);
   font: initial;
   font-family: 'Satoshi', sans-serif;
   font-size: 1.5rem;
@@ -58,7 +58,7 @@ span {
   bottom: calc(var(--header-height) + 80px);
   left: 40px;
   width: 260px;
-  background-color: rgb(230, 230, 230);
+  background-color: var(--text-color);
   border-radius: 3px;
   padding: 15px;
   pointer-events: none;

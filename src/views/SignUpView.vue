@@ -1,8 +1,14 @@
 <script setup>
 import { ref } from 'vue'
+import { createFirebaseUserWithEmailAndPassword, updateFirebaseUser } from '../utils/firebase.utils'
+import { useCurrentUserStore } from '../stores/currentUser'
+import { useRouter } from 'vue-router'
 import FormWrapper from '../components/FormWrapper.vue'
 import Button from '../components/Button.vue'
 import InputField from '../components/InputField.vue'
+
+const router = useRouter()
+const currentUserStore = useCurrentUserStore()
 
 const nameRegex = /^[a-zA-ZäÄüÜöÖ\s]{3,30}$/
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -43,7 +49,7 @@ const validateConfirmPassword = () => {
   }
 }
 
-const handleFormSubmit = () => {
+const handleFormSubmit = async () => {
   if (nameErrMessage.value || emailErrMessage.value || passwordErrMessage.value || confirmPasswordErrMessage.value)
     return
 
@@ -68,7 +74,14 @@ const handleFormSubmit = () => {
 
   if (fieldIsEmpty) return
 
-  console.log('Form can be submitted!!!')
+  await createFirebaseUserWithEmailAndPassword(email.value, password.value)
+  // The updateProfile() method will - in contrary to what firebase docs are saying - NOT trigger onAuthStateChanged().
+  // The displayName of the user will be updated in Firebase, however it will not be accessible in the callback passed to
+  // onAuthStateChanged() in App.vue yet. If the user logs in the next time, the displayName will be accessible.
+  // To also have access to the users displayName when he first signs up, another solution must be found.
+  await updateFirebaseUser({ displayName: name.value })
+  currentUserStore.currentUser.displayName = name.value
+  router.push('/')
 }
 </script>
 

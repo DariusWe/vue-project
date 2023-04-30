@@ -78,7 +78,7 @@ const handleFormSubmit = async () => {
   // The updateProfile() method will - in contrary to what firebase docs are saying - NOT trigger onAuthStateChanged().
   // The displayName of the user will be updated in Firebase, however it will not be accessible in the callback passed to
   // onAuthStateChanged() in App.vue yet. If the user logs in the next time, the displayName will be accessible.
-  // To also have access to the users displayName when he first signs up, another solution must be found.
+  // To also have access to the users displayName when he first signs up, the displayName has to be passed manually to UserStore.
   await updateFirebaseUser({ displayName: name.value })
   currentUserStore.currentUser.displayName = name.value
   router.push('/')

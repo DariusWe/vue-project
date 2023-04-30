@@ -48,9 +48,13 @@ span:nth-child(2) {
   left: 0;
   height: 100%;
   width: 100%;
-  --gradient-color-1: #330a3d;
-  --gradient-color-2: #34112d;
-  --gradient-color-3: #801b39;
-  --gradient-color-4: #80141b;
+  /* --gradient-color-1: #abcd4e;
+  --gradient-color-2: #46a258;
+  --gradient-color-3: #c3a656;
+  --gradient-color-4: #d55ac3; */
+  --gradient-color-1: #addc66;
+  --gradient-color-2: #6bd680;
+  --gradient-color-3: #e3c061;
+  --gradient-color-4: #d87cc4;
 }
 </style>

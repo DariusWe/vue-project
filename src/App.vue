@@ -6,7 +6,6 @@ import { useCurrentUserStore } from './stores/currentUser'
 import Header from './components/Header/Header.vue'
 import Footer from './components/Footer.vue'
 import InfoPopup from './components/InfoPopup.vue'
-import INFO_TEXTS from './assets/InfoTexts'
 
 const currentUserStore = useCurrentUserStore()
 
@@ -26,7 +25,7 @@ onMounted(() => {
 <template>
   <Header />
   <RouterView />
-  <InfoPopup :text="INFO_TEXTS.homeText" />
+  <InfoPopup />
   <Footer />
 </template>
 

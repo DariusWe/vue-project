@@ -1,10 +1,32 @@
 <script setup>
-import { ref, defineProps, onMounted } from 'vue'
+import { ref, defineProps, onMounted, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import INFO_TEXTS from '../assets/InfoTexts'
+
+const route = useRoute()
+const infoText = computed(() => {
+  switch (route.path) {
+    case '/':
+      return INFO_TEXTS.homeText
+      break
+    case '/sign-in':
+      return INFO_TEXTS.signInText
+      break
+    case '/sign-up':
+      return INFO_TEXTS.signUpText
+      break
+    case '/tasks':
+      return INFO_TEXTS.tasksText
+      break
+    default:
+      return INFO_TEXTS.homeText
+      break
+  }
+})
+const routeIsHome = computed(() => route.path === '/')
 
 const timeoutFinished = ref(false)
 const popupIsOpen = ref(false)
-
-defineProps(['text'])
 
 onMounted(() => {
   setTimeout(() => {
@@ -14,9 +36,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <i v-if="timeoutFinished" class="material-icons" @mouseover="popupIsOpen = !popupIsOpen" @mouseout="popupIsOpen = !popupIsOpen"> info </i>
+  <i
+    v-if="timeoutFinished"
+    :class="routeIsHome ? 'route-is-home material-icons' : 'material-icons'"
+    @mouseover="popupIsOpen = !popupIsOpen"
+    @mouseout="popupIsOpen = !popupIsOpen"
+  >
+    info
+  </i>
   <Transition>
-    <span v-show="popupIsOpen"> {{ text }}</span>
+    <span v-show="popupIsOpen" :class="routeIsHome ? 'route-is-home' : ''"> {{ infoText }}</span>
   </Transition>
 </template>
 
@@ -32,6 +61,10 @@ i {
   animation-timing-function: ease;
   transition: transform 0.1s;
   cursor: context-menu;
+}
+
+i.route-is-home {
+  color: #f1f1f1;
 }
 
 @keyframes Popup {
@@ -64,6 +97,11 @@ span {
   pointer-events: none;
   transform-origin: bottom left;
   z-index: 10;
+}
+
+span.route-is-home {
+  background-color: #f1f1f1;
+  color: #111;
 }
 
 .v-enter-active,

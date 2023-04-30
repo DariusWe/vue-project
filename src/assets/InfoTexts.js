@@ -1,7 +1,11 @@
 const INFO_TEXTS = {
-  homeText: 'This Task Tracker application is built with Vue.js (Composition API, Vue Router, Pinia) on the frontend and Java on the backend. Firebase Auth is used for authentification. Sign in to try it out!',
-  signInText: 'You can create a new account with fake credentials (no email confirmation required) or use the following, already existing account: <br> Email: max-mustermann@mail.com <br> Password: password123!',
-  signUpText: 'Try to use invalid values here to see form validation in action (e.g. a name with numbers or an invalid email format). Also check out the code for this form on GitHub to see my commitment to writing clean, reusable code and maintaining clear separation of logic',
+  homeText:
+    'Check out this informative box occasionally while navigating through my app, where I will clarify my thought process behind the development of its various features.',
+  signInText:
+    'You have to create an account before signing in. Don\'t worry, you can use fake credentials, email confirmation is not required.',
+  signUpText:
+    'Try using invalid form inputs to see form validation in action. Also be sure to check out the code for this form on GitHub (SignUpView.vue) to see my commitment to writing clean, reusable code and maintaining clear separation of logic.',
+  tasksText: '...',
 }
 
 export default INFO_TEXTS

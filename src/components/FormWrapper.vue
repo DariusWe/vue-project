@@ -1,6 +1,9 @@
 <!-- 
-  This wrapper-component only provides the visual appearance of a form. Inputs and form logic must be handled in the parent component. The component accepts a "title"-, "form"- and "footnote"-slot. 
+  This wrapper-component only provides the visual appearance of a form. Inputs and form logic must be handled in the parent component. The component accepts a "title"-, "form"- and "footnote"-slot.
 -->
+<!--
+  Do i really need this component? When implementing a form, you most of the time want to have control about the placing of the form, the width and other options.
+ -->
 
 <template>
   <div class="outer-container">
@@ -28,7 +31,7 @@
 .form-container {
   width: fit-content;
   min-width: 420px;
-  padding: 60px;
+  padding: 40px 60px;
 }
 .title {
   text-align: center;
@@ -36,7 +39,7 @@
 form {
   display: flex;
   flex-direction: column;
-  margin: 50px 0 20px 0;
+  margin: 40px 0 20px 0;
 }
 .footnote {
   display: block;

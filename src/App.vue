@@ -6,6 +6,7 @@ import { useCurrentUserStore } from './stores/currentUser'
 import Header from './components/Header/Header.vue'
 import Footer from './components/Footer.vue'
 import InfoPopup from './components/InfoPopup.vue'
+import AuthResponsePopup from './components/AuthResponsePopup.vue'
 
 const currentUserStore = useCurrentUserStore()
 
@@ -25,8 +26,7 @@ onMounted(() => {
 <template>
   <Header />
   <RouterView />
-  <InfoPopup />
   <Footer />
+  <InfoPopup />
+  <AuthResponsePopup />
 </template>
-
-<style scoped></style>

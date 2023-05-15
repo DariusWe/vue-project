@@ -5,7 +5,7 @@ import Navbar from './Navbar.vue'
 
 <template>
   <div class="header">
-    <RouterLink to="/"><span class="logo">VueTaskTracker</span></RouterLink>
+    <RouterLink to="/"><span class="logo">VueNotes</span></RouterLink>
     <Navbar />
   </div>
 </template>

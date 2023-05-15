@@ -4,8 +4,8 @@
  -->
 
 <script setup>
-import { ref } from 'vue';
-defineProps(['modelValue', 'errMsg'])
+import { ref } from 'vue'
+defineProps(['modelValue', 'errMsg', 'textarea'])
 const emit = defineEmits(['update:modelValue', 'removeErrMessage'])
 const showPassword = ref(false)
 
@@ -17,13 +17,29 @@ function handleInputChange($event) {
 
 <template>
   <div class="input-container">
-    <input v-bind="$attrs" :type="showPassword ? 'text' : $attrs['type']" :value="modelValue" @input="handleInputChange" :class="[errMsg ? 'invalid' : '']" />
+    <input
+      v-if="!textarea"
+      v-bind="$attrs"
+      :type="showPassword ? 'text' : $attrs['type']"
+      :value="modelValue"
+      @input="handleInputChange"
+      :class="[errMsg ? 'invalid' : '']"
+    />
+    <textarea
+      v-if="textarea"
+      rows="4"
+      v-bind="$attrs"
+      :value="modelValue"
+      @input="handleInputChange"
+      :class="[errMsg ? 'invalid' : '']"
+    >
+    </textarea>
     <i
       v-if="$attrs['type'] === 'password'"
       class="material-icons visbility-icon"
       title="Toggle visibility"
       @click="showPassword = !showPassword"
-      >{{ showPassword ? 'visibility_off' : 'visibility'}}</i
+      >{{ showPassword ? 'visibility_off' : 'visibility' }}</i
     >
     <span class="err-message" v-if="errMsg">{{ errMsg }}</span>
   </div>
@@ -34,7 +50,7 @@ function handleInputChange($event) {
   position: relative;
 }
 
-input {
+input, textarea {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -53,7 +69,7 @@ input[type='password'] {
   line-height: 2.08rem;
 }
 
-input:focus {
+input:focus, textarea:focus {
   border-color: var(--border-color-focus);
 }
 

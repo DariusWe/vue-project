@@ -15,8 +15,8 @@ const infoText = computed(() => {
     case '/sign-up':
       return INFO_TEXTS.signUpText
       break
-    case '/tasks':
-      return INFO_TEXTS.tasksText
+    case '/notes':
+      return INFO_TEXTS.notesText
       break
     default:
       return INFO_TEXTS.homeText
@@ -54,7 +54,7 @@ i {
   position: absolute;
   bottom: calc(var(--header-height) + 30px);
   left: 40px;
-  font-size: 4rem;
+  font-size: 3.6rem;
   color: var(--text-color);
   animation-name: Popup;
   animation-duration: 700ms;
@@ -88,7 +88,7 @@ span {
   font-family: 'Satoshi', sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
-  bottom: calc(var(--header-height) + 80px);
+  bottom: calc(var(--header-height) + 72px);
   left: 40px;
   width: 260px;
   background-color: var(--text-color);

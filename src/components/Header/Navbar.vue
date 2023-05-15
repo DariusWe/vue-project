@@ -1,13 +1,28 @@
 <script setup>
-import { ref } from 'vue'
+import { watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useCurrentUserStore } from '../../stores/currentUser'
 import { signOutFirebaseUser } from '../../utils/firebase.utils'
 import DarkModeIcon from './DarkModeIcon.vue'
 import LoadingAnimation from './LoadingAnimation.vue'
 
-const userDropdownMenuOpen = ref(false)
 const currentUserStore = useCurrentUserStore()
+
+const clickHandler = () => {
+  currentUserStore.isUserMenuOpen = false
+}
+
+watch(currentUserStore.getIsUserMenuOpen, (newValue, oldValue) => {
+  if (newValue === true) {
+    // If event listener is added without setTimeout, Vue will add it and run it immediatly (as the click event 
+    // and adding event listener happen in the same render cycle. 
+    setTimeout(() => {
+      window.addEventListener('click', clickHandler)
+    }, 50)
+  } else {
+    window.removeEventListener('click', clickHandler)
+  }
+})
 </script>
 
 <template>
@@ -17,7 +32,7 @@ const currentUserStore = useCurrentUserStore()
         <DarkModeIcon />
       </li>
       <li>
-        <RouterLink to="/tasks">Manage Tasks</RouterLink>
+        <RouterLink to="/notes">Manage Notes</RouterLink>
       </li>
       <li v-if="!currentUserStore.currentUser">
         <RouterLink to="/sign-in">Sign in</RouterLink>
@@ -28,14 +43,14 @@ const currentUserStore = useCurrentUserStore()
       <li
         v-if="currentUserStore.currentUser && currentUserStore.currentUser.displayName"
         class="user-name"
-        @click="userDropdownMenuOpen = !userDropdownMenuOpen"
+        @click="currentUserStore.isUserMenuOpen = !currentUserStore.isUserMenuOpen"
       >
         {{ currentUserStore.currentUser.displayName }}
-        <i class="material-icons"> {{ userDropdownMenuOpen ? 'expand_less' : 'expand_more' }} </i>
-        <span v-if="userDropdownMenuOpen" class="dropDown" @click="signOutFirebaseUser">Sign Out</span>
+        <i class="material-icons"> {{ currentUserStore.isUserMenuOpen ? 'expand_less' : 'expand_more' }} </i>
       </li>
     </ul>
   </nav>
+  <span v-if="currentUserStore.isUserMenuOpen" class="dropDown" @click="signOutFirebaseUser">Sign Out</span>
 </template>
 
 <style scoped>
@@ -69,12 +84,14 @@ i {
 
 .dropDown {
   position: absolute;
-  top: 85%;
-  left: -10px;
-  width: 160px;
+  top: 100%;
+  right: -1px;
+  padding: 12px 20px;
+  width: 187px;
   background-color: var(--main-bg-color);
-  border: 1px solid #333;
+  border: 1px solid var(--border-color);
   cursor: pointer;
   z-index: 2;
+  /* background-color: red; */
 }
 </style>
